@@ -1,0 +1,33 @@
+<?php
+
+//curl http://github.com/api/v2/xml/repos/search/ruby+testing
+function github_menu() {
+  $items['github'] = array(
+    'title' => 'Github search',
+    'page callback' => 'github_search_page',
+    'access arguments' => array('search github'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+}
+
+function github_perm() {
+  return array('search github');
+}
+
+function github_search_page() {
+  $output .= drupal_get_form('github_search_form');
+  return $output;
+}
+
+function github_search_form() {
+  $form['search'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Search phrase'),
+    '#required' => TRUE,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Search').
+  );
+  return $form;
+}
